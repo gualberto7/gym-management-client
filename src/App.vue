@@ -1,8 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <h1>Vue 3 + Vite + Vue Router</h1>
-  <RouterView />
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style scoped></style>
