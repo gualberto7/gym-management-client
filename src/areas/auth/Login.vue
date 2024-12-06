@@ -1,3 +1,10 @@
+<script lang="ts" setup>
+import LoginForm from "./classes/LoginForm";
+
+const form = new LoginForm();
+console.log(form);
+</script>
+
 <template>
   <div class="w-full md:w-1/3">
     <Card title="Acceder">
