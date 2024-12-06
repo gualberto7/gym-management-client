@@ -16,4 +16,8 @@ export default class LoginForm extends Form<LoginInterface> {
             password: 'Contraseña'
         }
     }
+
+    submit () {
+        console.log('Form submitted', this.model);
+    }
 }
