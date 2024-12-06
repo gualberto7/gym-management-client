@@ -1,5 +1,5 @@
 import './assets/main.css'
-import { registerPlugins } from './plugins'
+import { registerPlugins } from './core/plugins'
 
 import { createApp } from 'vue'
 

@@ -1,5 +1,5 @@
 import type { App } from 'vue';
-import router from '@/router';
+import router from '@/core/router';
 import { createPinia } from 'pinia'
 import { registerGlobalComponents } from './global-components';
 
