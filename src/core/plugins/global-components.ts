@@ -4,6 +4,7 @@ import Form from '../components/Form.vue';
 import FieldContainer from '../components/FieldContainer.vue';
 import Label from '../components/Label.vue';
 import TextField from '../components/TextField.vue';
+import Button from '../components/Button.vue';
 
 export function registerGlobalComponents(app: App) {
   app.component('Card', Card);
@@ -11,4 +12,5 @@ export function registerGlobalComponents(app: App) {
   app.component('FieldContainer', FieldContainer);
   app.component('Label', Label);
   app.component('TextField', TextField);
+  app.component('Button', Button);
 }

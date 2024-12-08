@@ -1,15 +1,16 @@
 <script lang="ts" setup>
 import LoginForm from "./classes/LoginForm";
-import { useAuth } from "./composables/useAuth";
 
 const form = new LoginForm();
-const { login } = useAuth();
 </script>
 
 <template>
   <div class="w-full md:w-1/3">
     <Card title="Acceder">
-      <Form :form="form" @on-submit="login(form.model)">
+      <Form :form="form" @on-submit="form.submit()">
+        <div v-if="form.error">
+          <p>{{ form.error }}</p>
+        </div>
         <div class="mb-5">
           <FieldContainer field="email">
             <Label />
@@ -22,12 +23,9 @@ const { login } = useAuth();
             <TextField type="password" />
           </FieldContainer>
         </div>
-        <button
-          type="submit"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
+        <Button type="submit" color="primary" :disabled="form.processing.value">
           Submit
-        </button>
+        </Button>
       </Form>
       <div class="mt-5">
         No tienes cuenta?
