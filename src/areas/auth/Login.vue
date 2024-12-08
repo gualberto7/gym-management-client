@@ -8,8 +8,14 @@ const form = new LoginForm();
   <div class="w-full md:w-1/3">
     <Card title="Acceder">
       <Form :form="form" @on-submit="form.submit()">
-        <div v-if="form.error">
-          <p>{{ form.error }}</p>
+        <div class="mb-4">
+          <Alert
+            v-if="form.error.value"
+            color="danger"
+            @close="form.clearError()"
+          >
+            <p>{{ form.error.value }}</p>
+          </Alert>
         </div>
         <div class="mb-5">
           <FieldContainer field="email">

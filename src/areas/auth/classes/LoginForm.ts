@@ -1,23 +1,30 @@
 import Form from "@/core/classes/form";
 import LoginModel from "./LoginModel";
 import type { LoginInterface } from "../interfaces/forms";
+import { useRouter } from "vue-router";
 
 export default class LoginForm extends Form<LoginInterface> {
-    constructor() {
-        super(new LoginModel());
+  private router: any;
+  constructor() {
+    super(new LoginModel());
 
-        this.rules = {
-            email: 'required|email',
-            password: 'required|min:6'
-        }
+    this.router = useRouter();
 
-        this.labels = {
-            email: 'Correo electrónico',
-            password: 'Contraseña'
-        }
+    this.rules = {
+      email: "required|email",
+      password: "required",
+    };
+
+    this.labels = {
+      email: "Correo electrónico",
+      password: "Contraseña",
+    };
+  }
+
+  async submit() {
+    const response = await this.submitForm("login");
+    if (response) {
+      this.router.push({ name: "dashboard" });
     }
-
-    submit () {
-        console.log('Form submitted', this.model);
-    }
+  }
 }

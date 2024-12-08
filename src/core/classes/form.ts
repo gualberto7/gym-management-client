@@ -1,20 +1,21 @@
 // Form.ts
 
 import { reactive, ref, watch, type Ref } from "vue";
+import api from "@/core/api";
 import ValidationRules from "@/core/utils/validationRules";
 import type { ValidationRuleName } from "@/core/interfaces/ValidationRules";
 
 export default class Form<T extends Record<string, any>> {
   public model: T;
   public rules: { [key: string]: string } = {};
-  public processing: Ref<boolean>;
+  public processing = ref(false);
   public errors: Record<string, string> = reactive({});
   public labels: Record<string, string> = reactive({});
+  public error = ref("");
   public isValid = ref(false);
 
   constructor(model: T) {
     this.model = reactive(model) as T;
-    this.processing = ref(false);
 
     watch(
       this.model,
@@ -25,17 +26,12 @@ export default class Form<T extends Record<string, any>> {
     );
   }
 
-  public setErrors(errors: string[]): void {
-    for (const error of errors) {
-      const key = error.split(" ")[0];
-      this.errors[key] = error;
-    }
-
-    console.log(this.errors);
-  }
-
   public clearErrors(): void {
     this.errors = {};
+  }
+
+  public clearError(): void {
+    this.error.value = "";
   }
 
   public validate() {
@@ -64,17 +60,14 @@ export default class Form<T extends Record<string, any>> {
     else this.isValid.value = false;
   }
 
-  public async submitForm(url: string, method: string = "POST"): Promise<any> {
+  public async submitForm(url: string): Promise<any> {
     this.processing.value = true;
     try {
-      /*const response = await this.nuxtApp.$fetch(url, {
-        method,
-        body: JSON.stringify(this.model),
-      });*/
-      //return response;
+      const response = await api.post(url, this.model);
+      return response;
     } catch (error: any) {
       if (error.response) {
-        //this.setErrors(error.response.data.errors);
+        this.error.value = error.response.data.message;
         console.log(error.response.data.errors);
       }
     } finally {
