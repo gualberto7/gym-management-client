@@ -1,13 +1,15 @@
 <script lang="ts" setup>
 import LoginForm from "./classes/LoginForm";
+import { useAuth } from "./composables/useAuth";
 
 const form = new LoginForm();
+const { login } = useAuth();
 </script>
 
 <template>
   <div class="w-full md:w-1/3">
     <Card title="Acceder">
-      <Form :form="form" @on-submit="form.submit()">
+      <Form :form="form" @on-submit="login(form.model)">
         <div class="mb-5">
           <FieldContainer field="email">
             <Label />

@@ -8,7 +8,7 @@ const axios = axiosLib.create({
     'Accept': 'application/json',
   },
     withCredentials: true,
-    xsrfCookieName: 'XSRF-TOKEN',
+    withXSRFToken: true,
 })
 
 /*axios.interceptors.request.use(async (config) => {
