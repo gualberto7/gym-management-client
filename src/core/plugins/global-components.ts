@@ -7,6 +7,7 @@ import TextField from "../components/TextField.vue";
 import Button from "../components/Button.vue";
 import Alert from "../components/Alert.vue";
 import Table from "../components/Table.vue";
+import Avatar from "../components/Avatar.vue";
 
 export function registerGlobalComponents(app: App) {
   app.component("Card", Card);
@@ -17,4 +18,5 @@ export function registerGlobalComponents(app: App) {
   app.component("Button", Button);
   app.component("Alert", Alert);
   app.component("Table", Table);
+  app.component("Avatar", Avatar);
 }
