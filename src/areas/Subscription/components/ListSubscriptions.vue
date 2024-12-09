@@ -36,7 +36,7 @@ onMounted(async () => {
           <Avatar :name="item.member" />
           <div class="ps-3">
             <div class="text-base font-semibold">{{ item.member }}</div>
-            <div class="font-normal text-gray-500">{{ item.email }}</div>
+            <div class="font-normal text-gray-500">{{ item.phone }}</div>
           </div>
         </div>
       </template>
