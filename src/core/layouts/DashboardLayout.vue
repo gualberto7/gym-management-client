@@ -6,7 +6,7 @@ import Sidebar from "@/core/components/Sidebar.vue";
 <template>
   <Navbar />
   <Sidebar />
-  <div class="p-5 mt-16 ms-64">
+  <div class="p-5 mt-16 ms-0 sm:ms-64">
     <RouterView />
   </div>
 </template>
