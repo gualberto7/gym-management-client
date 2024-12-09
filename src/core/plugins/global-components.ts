@@ -6,6 +6,7 @@ import Label from "../components/Label.vue";
 import TextField from "../components/TextField.vue";
 import Button from "../components/Button.vue";
 import Alert from "../components/Alert.vue";
+import Table from "../components/Table.vue";
 
 export function registerGlobalComponents(app: App) {
   app.component("Card", Card);
@@ -15,4 +16,5 @@ export function registerGlobalComponents(app: App) {
   app.component("TextField", TextField);
   app.component("Button", Button);
   app.component("Alert", Alert);
+  app.component("Table", Table);
 }
