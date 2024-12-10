@@ -69,7 +69,7 @@ const handleDropdownClick = (value: string) => {
         <div class="flex items-center">
           <Avatar :name="session.user!.name" class="me-3" />
           <Dropdown
-            :label="session.user!.name"
+            :label="session.user?.name || 'Usuario'"
             :options="dropdownItems"
             @on-option-click="handleDropdownClick"
           />

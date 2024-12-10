@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ListSubscriptions from "@/areas/Subscription/components/ListSubscriptions.vue";
+import ListSubscriptions from "./components/ListSubscriptions.vue";
 </script>
 
 <template>

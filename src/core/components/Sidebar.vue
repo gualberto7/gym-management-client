@@ -23,13 +23,13 @@ import UsersIcon from "./icons/UsersIcon.vue";
           </RouterLink>
         </li>
         <li>
-          <a
-            href="#"
+          <RouterLink
+            :to="{ name: 'users' }"
             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
           >
             <UsersIcon />
             <span class="flex-1 ms-3 whitespace-nowrap">Usuarios</span>
-          </a>
+          </RouterLink>
         </li>
         <li>
           <a
@@ -47,7 +47,7 @@ import UsersIcon from "./icons/UsersIcon.vue";
             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
           >
             <DoubleArrowLeft />
-            <span class="ms-3">Cerra Sesion</span>
+            <span class="ms-3">Cerrar Sesión</span>
           </a>
         </li>
       </ul>

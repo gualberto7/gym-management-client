@@ -32,7 +32,12 @@ const router = createRouter({
         {
           path: "",
           name: "home",
-          component: () => import("@/pages/Dashboard.vue"),
+          component: () => import("@/areas/home/Home.vue"),
+        },
+        {
+          path: "users",
+          name: "users",
+          component: () => import("@/areas/subscription/Subscription.vue"),
         },
         {
           path: "register",
