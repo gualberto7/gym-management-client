@@ -15,7 +15,7 @@ const props = defineProps({
 const avatar = computed(() => {
   return (
     props.avatarUrl ||
-    `https://ui-avatars.com/api/?name=${props.name}&background=random`
+    `https://ui-avatars.com/api/?name=${props.name}&background=b5b3b3`
   );
 });
 </script>

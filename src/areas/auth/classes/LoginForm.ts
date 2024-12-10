@@ -24,7 +24,7 @@ export default class LoginForm extends Form<LoginInterface> {
   async submit() {
     const response = await this.submitForm("login");
     if (response) {
-      this.router.push({ name: "dashboard" });
+      this.router.push({ name: "home" });
     }
   }
 }
