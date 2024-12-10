@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AddUserIcon from "./icons/AddUserIcon.vue";
 import DoubleArrowLeft from "./icons/DoubleArrowLeft.vue";
 import GraphIcon from "./icons/GraphIcon.vue";
 import HomeIcon from "./icons/HomeIcon.vue";
@@ -32,6 +33,15 @@ import UsersIcon from "./icons/UsersIcon.vue";
           </RouterLink>
         </li>
         <li>
+          <RouterLink
+            :to="{ name: 'register' }"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+          >
+            <AddUserIcon />
+            <span class="flex-1 ms-3 whitespace-nowrap">Registro</span>
+          </RouterLink>
+        </li>
+        <li>
           <a
             href="#"
             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
@@ -54,3 +64,9 @@ import UsersIcon from "./icons/UsersIcon.vue";
     </div>
   </aside>
 </template>
+
+<style scoped>
+.router-link-exact-active {
+  @apply bg-gray-100 dark:bg-gray-700;
+}
+</style>
