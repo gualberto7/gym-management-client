@@ -2,6 +2,7 @@
 import { onMounted, reactive } from "vue";
 import type { Subscription } from "../interfaces/Subscription";
 import api from "@/core/api";
+import SubscriptionStatus from "./SubscriptionStatus.vue";
 
 const subscriptions = reactive<Subscription[]>([]);
 const columns = [
@@ -10,7 +11,7 @@ const columns = [
     label: "Name",
   },
   {
-    key: "end_date",
+    key: "status",
     label: "Estado",
   },
   {
@@ -40,8 +41,8 @@ onMounted(async () => {
           </div>
         </div>
       </template>
-      <template #end_date="{ item }">
-        <span>{{ item.end_date }}</span>
+      <template #status="{ item }">
+        <SubscriptionStatus :subscription="item" />
       </template>
       <template #membership="{ item }">
         <span>{{ item.membership }}</span>
