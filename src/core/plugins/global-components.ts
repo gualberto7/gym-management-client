@@ -8,6 +8,7 @@ import Button from "../components/Button.vue";
 import Alert from "../components/Alert.vue";
 import Table from "../components/Table.vue";
 import Avatar from "../components/Avatar.vue";
+import Badge from "../components/Badge.vue";
 
 export function registerGlobalComponents(app: App) {
   app.component("Card", Card);
@@ -19,4 +20,5 @@ export function registerGlobalComponents(app: App) {
   app.component("Alert", Alert);
   app.component("Table", Table);
   app.component("Avatar", Avatar);
+  app.component("Badge", Badge);
 }
