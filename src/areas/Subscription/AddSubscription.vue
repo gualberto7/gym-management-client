@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { useGymStore } from "../gym/store/gymStore";
 import MembershipCard from "../gym/components/MembershipCard.vue";
+import PageHeader from "@/core/components/PageHeader.vue";
 
 const gymStore = useGymStore();
 
@@ -10,7 +11,7 @@ const memberships = computed(() => gymStore.memberships);
 
 <template>
   <div>
-    <h2>Add Sunscription</h2>
+    <PageHeader title="Registro" />
     <div class="flex gap-5">
       <MembershipCard
         v-for="membership in memberships"

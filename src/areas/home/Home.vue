@@ -2,6 +2,6 @@
 
 <template>
   <div>
-    <h2>Home</h2>
+    <PageHeader title="Inicio" />
   </div>
 </template>
