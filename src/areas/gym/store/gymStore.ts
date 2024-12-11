@@ -1,24 +1,28 @@
 import { defineStore } from "pinia";
-import { reactive } from "vue";
+import { computed, reactive, ref } from "vue";
 import type { Gym } from "../interfaces/Gym";
-import { set } from "lodash";
 
 export const useGymStore = defineStore("gym", () => {
   const gyms = reactive<Gym[]>([]);
-  const currentGym = reactive<Gym | {}>({});
+  const currentGym = ref<Gym>();
 
-  const setGyms = (gyms: Gym[]) => {
-    Object.assign(gyms, gyms);
-    setCurrentGym(gyms[0] || {});
+  const setGyms = (_gyms: Gym[]) => {
+    Object.assign(gyms, _gyms);
+    setCurrentGym(_gyms[0]);
   };
 
   const setCurrentGym = (gym: Gym) => {
-    Object.assign(currentGym, gym);
+    currentGym.value = gym;
   };
+
+  const memberships = computed(() => currentGym.value?.memberships);
 
   return {
     gyms,
     setGyms,
     currentGym,
+
+    // Computed
+    memberships,
   };
 });

@@ -12,6 +12,7 @@ export const useApp = () => {
       const response = await api.get("api/gyms");
       user.setUser(data);
       gym.setGyms(response.data);
+      console.log(data, response.data);
       return true;
     } catch (error) {
       router.push({ name: "login" });

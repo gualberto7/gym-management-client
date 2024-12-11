@@ -1,21 +1,22 @@
 <script lang="ts" setup>
-import { computed, onMounted } from "vue";
-import { useMembership } from "../membership/composables/useMembership";
-import { useMembershipStore } from "../membership/store/membershipStore";
+import { computed } from "vue";
+import { useGymStore } from "../gym/store/gymStore";
+import MembershipCard from "../gym/components/MembershipCard.vue";
 
-const { loadMemberships } = useMembership();
-const membershipStore = useMembershipStore();
+const gymStore = useGymStore();
 
-onMounted(() => {
-  loadMemberships();
-});
-
-const memberships = computed(() => membershipStore.memberships);
+const memberships = computed(() => gymStore.memberships);
 </script>
 
 <template>
   <div>
     <h2>Add Sunscription</h2>
-    <pre>{{ memberships }}</pre>
+    <div class="flex gap-5">
+      <MembershipCard
+        v-for="membership in memberships"
+        :key="membership.id"
+        :membership="membership"
+      />
+    </div>
   </div>
 </template>
