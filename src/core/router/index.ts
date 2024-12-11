@@ -42,7 +42,7 @@ const router = createRouter({
         {
           path: "register",
           name: "register",
-          component: () => import("@/pages/Register.vue"),
+          component: () => import("@/areas/subscription/AddSubscription.vue"),
         },
         {
           path: "memberships",
