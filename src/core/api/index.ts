@@ -1,23 +1,22 @@
-import axiosLib from 'axios'
-import Cookies from 'js-cookie'
+import axios from "axios";
+import Cookies from "js-cookie";
 
-const axios = axiosLib.create({
-  baseURL: 'http://localhost:8000/',
+const instance = axios.create({
+  baseURL: "http://localhost:8000/",
   headers: {
-    'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json',
+    "X-Requested-With": "XMLHttpRequest",
+    Accept: "application/json",
   },
-    withCredentials: true,
-    withXSRFToken: true,
-})
+  withCredentials: true,
+  withXSRFToken: true,
+});
 
-/*axios.interceptors.request.use(async (config) => {
-  if ((config.method as string).toLowerCase() !== 'get') {
-    await axios.get('/csrf-cookie').then()
-    config.headers['X-XSRF-TOKEN'] = Cookies.get('XSRF-TOKEN')
+instance.interceptors.request.use((config) => {
+  const token = Cookies.get("csrftoken");
+  if (token) {
+    config.headers["X-CSRFToken"] = token;
   }
+  return config;
+});
 
-  return config
-})*/
-
-export default axios
+export default instance;

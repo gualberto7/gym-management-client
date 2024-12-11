@@ -1,7 +1,19 @@
 <script lang="ts" setup>
+import { computed } from "vue";
 import LoginForm from "./classes/LoginForm";
+import { useSessionStore } from "./store/sessionStore";
+import { useRouter } from "vue-router";
 
 const form = new LoginForm();
+const session = useSessionStore();
+const router = useRouter();
+
+const isAuthenticated = computed(() => session.isAuthenticated);
+
+// If its already authenticated, redirect to home
+if (isAuthenticated.value) {
+  router.push({ name: "home" });
+}
 </script>
 
 <template>

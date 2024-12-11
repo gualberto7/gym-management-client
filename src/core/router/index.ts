@@ -63,11 +63,6 @@ router.beforeEach((to, from, next) => {
     !session.isAuthenticated
   ) {
     next({ name: "login" });
-  } else if (
-    to.name === "login" ||
-    (to.name === "create-account" && session.isAuthenticated)
-  ) {
-    next({ name: "home" });
   } else {
     next();
   }

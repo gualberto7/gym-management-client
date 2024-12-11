@@ -9,11 +9,16 @@ export const useSessionStore = defineStore("session", () => {
     user.value = newUser;
   };
 
-  const isAuthenticated = computed(() => user.value !== null);
+  const removeUser = () => {
+    user.value = null;
+  };
+
+  const isAuthenticated = computed(() => user.value?.id);
 
   return {
     user,
     setUser,
+    removeUser,
     isAuthenticated,
   };
 });
