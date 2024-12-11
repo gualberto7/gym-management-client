@@ -1,23 +1,24 @@
-import { useSessionStore } from '@/areas/auth/store/sessionStore';
-import api from '@/core/api';
-import { useRouter } from 'vue-router';
+import api from "@/core/api";
+import { useRouter } from "vue-router";
+import { useAppStore } from "../store";
 
 export const useApp = () => {
+  const { user, gym } = useAppStore();
+  const router = useRouter();
 
-    const sessionStore = useSessionStore();
-    const router = useRouter();
-  
-    const getAuthenticatedUser = async () => {
-      try {
-        const { data } = await api.get('api/user');
-        sessionStore.setUser(data);
-        return data;
-      } catch (error) {
-        router.push({ name: 'login' });
-      }
-    };
+  const getAuthenticatedUser = async () => {
+    try {
+      const { data } = await api.get("api/user");
+      const response = await api.get("api/gyms");
+      user.setUser(data);
+      gym.setGyms(response.data);
+      return true;
+    } catch (error) {
+      router.push({ name: "login" });
+    }
+  };
 
   return {
-    getAuthenticatedUser
-  }
-}
+    getAuthenticatedUser,
+  };
+};
