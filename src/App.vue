@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onBeforeMount, ref } from "vue";
 import { useApp } from "./core/composables/useApp";
+import Modal from "./core/components/Modal.vue";
 
 const app = useApp();
 const loading = ref(true);
@@ -17,6 +18,7 @@ onBeforeMount(async () => {
       <h1>Loading ...</h1>
     </div>
     <div v-else>
+      <Modal />
       <router-view />
     </div>
   </main>
