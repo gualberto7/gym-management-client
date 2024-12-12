@@ -1,19 +1,38 @@
 <script setup lang="ts">
+import { useSessionStore } from "@/areas/auth/store/sessionStore";
+import Avatar from "./Avatar.vue";
 import AddUserIcon from "./icons/AddUserIcon.vue";
 import DoubleArrowLeft from "./icons/DoubleArrowLeft.vue";
 import GraphIcon from "./icons/GraphIcon.vue";
 import HomeIcon from "./icons/HomeIcon.vue";
 import UsersIcon from "./icons/UsersIcon.vue";
+import { useGymStore } from "@/areas/gym/store/gymStore";
+
+const session = useSessionStore();
+const { currentGym } = useGymStore();
 </script>
 
 <template>
   <aside
     id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidebar"
   >
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
-      <ul class="space-y-2 font-medium">
+      <div class="flex items-center my-3">
+        <div class="me-3">
+          <img src="/src/assets/gym-logo.png" alt="Gym logo" class="w-12 h-12
+          rounded-full"
+        </div>
+        <div class="flex flex-col">
+          <h2 class="front-semibold">{{ currentGym?.name }}</h2>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            {{ currentGym?.phone }}
+          </p>
+        </div>
+      </div>
+      <hr />
+      <ul class="space-y-2 mt-3 font-medium">
         <li>
           <RouterLink
             :to="{ name: 'home' }"
