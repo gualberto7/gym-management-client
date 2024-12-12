@@ -10,6 +10,7 @@ import Table from "../components/Table.vue";
 import Avatar from "../components/Avatar.vue";
 import Badge from "../components/Badge.vue";
 import PageHeader from "../components/PageHeader.vue";
+import CreateMember from "@/areas/member/components/CreateMember.vue";
 
 export function registerGlobalComponents(app: App) {
   app.component("Card", Card);
@@ -23,4 +24,7 @@ export function registerGlobalComponents(app: App) {
   app.component("Avatar", Avatar);
   app.component("Badge", Badge);
   app.component("PageHeader", PageHeader);
+
+  // Global components for modal
+  app.component("CreateMember", CreateMember);
 }
