@@ -7,6 +7,7 @@ export default class Search {
   public filters = null;
   public sorts = null;
   public results = [];
+  public placeholder = "Search...";
   public loading = false;
   public error = "";
 
