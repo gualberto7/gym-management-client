@@ -1,4 +1,4 @@
-import { ref, watch, watchEffect } from "vue";
+import { ref, watch } from "vue";
 import api from "../api";
 
 export default class Search {
@@ -16,8 +16,7 @@ export default class Search {
     this.filters = filters;
     this.sorts = sorts;
 
-    watchEffect(() => {
-      this.modelValue.value;
+    watch(this.modelValue, () => {
       this.handleSearch();
     });
   }
