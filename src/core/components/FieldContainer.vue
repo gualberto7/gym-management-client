@@ -12,5 +12,7 @@ provide("field", props.field);
 </script>
 
 <template>
-  <slot></slot>
+  <div>
+    <slot></slot>
+  </div>
 </template>

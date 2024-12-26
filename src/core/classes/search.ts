@@ -44,6 +44,7 @@ export default class Search {
     try {
       const { data } = await api.get(this.getUrl());
       this.results = data;
+      return data;
     } catch (error) {
       this.handleErrors(error);
     } finally {

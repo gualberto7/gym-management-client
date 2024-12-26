@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // Imports -----
-import { computed, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import { useModalStore } from "@/core/store/modal";
 import { useGymStore } from "../gym/store/gymStore";
 
@@ -11,6 +11,8 @@ import SubscriptionForm from "./classes/SubscriptionForm";
 import SearchInput from "@/core/components/SearchInput.vue";
 import FindMember from "../member/classes/FindMember";
 import SearchContainer from "@/core/components/SearchContainer.vue";
+import FieldContainer from "@/core/components/FieldContainer.vue";
+import type { Member } from "../member/interfaces/Member";
 
 // State -----
 const gymStore = useGymStore();
@@ -18,6 +20,7 @@ const { show } = useModalStore();
 const form = new SubscriptionForm();
 const findMember = new FindMember();
 const memberCi = ref("");
+const member = ref<Member | null>();
 
 // Computed -----
 const memberships = computed(() => gymStore.memberships);
@@ -29,6 +32,13 @@ const createMember = () => {
 
 const searchMember = (ci: string) => {
   console.log(ci);
+};
+
+const handleResponse = (data: any) => {
+  console.log(data);
+  if (data) {
+    member.value = data;
+  }
 };
 </script>
 
@@ -43,12 +53,36 @@ const searchMember = (ci: string) => {
           </h3>
           <div>
             <SearchContainer :search="findMember">
-              <SearchInput />
+              <SearchInput @on-response="handleResponse" />
             </SearchContainer>
             <div v-show="findMember.error.value">
               <p class="text-red-500 text-sm mt-2">
                 {{ findMember.error.value }}
               </p>
+            </div>
+            <div class="mt-4">
+              <Form :form="form">
+                <div class="mb-3">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    <FieldContainer field="start_date">
+                      <Label />
+                      <TextField type="date" />
+                    </FieldContainer>
+                    <FieldContainer field="end_date">
+                      <Label />
+                      <TextField type="date" />
+                    </FieldContainer>
+                  </div>
+                </div>
+                <div v-if="member" class="mb-3">
+                  <h3 class="text-lg mb-2">
+                    Nombre usuario: <strong>{{ member.name }}</strong>
+                  </h3>
+                  <h3 class="text-lg mb-2">
+                    Celular: <strong>{{ member.phone }}</strong>
+                  </h3>
+                </div>
+              </Form>
             </div>
           </div>
         </div>
@@ -56,14 +90,6 @@ const searchMember = (ci: string) => {
           <h3 class="text-lg text-gray-500 font-semibold mb-4">
             Datos de plan
           </h3>
-          <Form :form="form">
-            <div class="mb-3">
-              <FieldContainer field="start_date">
-                <Label />
-                <TextField type="date" />
-              </FieldContainer>
-            </div>
-          </Form>
         </div>
       </div>
     </div>

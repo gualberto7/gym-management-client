@@ -40,6 +40,7 @@ const handleInput = (event: Event) => {
     :class="{
       'border-red-500 focus:ring-red-500 focus:border-red-500': errorMessage,
     }"
+    v-bind="$attrs"
   />
   <span :id="`${field}-error`" class="text-red-500 text-xs">{{
     errorMessage

@@ -23,7 +23,7 @@ export default class SubscriptionForm extends Form<SubscriptionFormInterface> {
     };
   }
 
-  submit() {
-    console.log("Form submitted", this.model);
+  async submit() {
+    //const response = await this.exec();
   }
 }
