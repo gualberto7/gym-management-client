@@ -41,9 +41,16 @@ const searchMember = (ci: string) => {
           <h3 class="text-lg text-gray-500 font-semibold mb-4">
             Datos de usuario
           </h3>
-          <SearchContainer :search="findMember">
-            <SearchInput placeholder="Buscar usuario por CI" />
-          </SearchContainer>
+          <div>
+            <SearchContainer :search="findMember">
+              <SearchInput />
+            </SearchContainer>
+            <div v-show="findMember.error.value">
+              <p class="text-red-500 text-sm mt-2">
+                {{ findMember.error.value }}
+              </p>
+            </div>
+          </div>
         </div>
         <div class="">
           <h3 class="text-lg text-gray-500 font-semibold mb-4">
