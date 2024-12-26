@@ -8,5 +8,5 @@ export interface SearchInterface {
   loading: boolean;
   error: string;
   handleSearch(): void;
-  search(): Promise<any>;
+  exec(): Promise<any>;
 }

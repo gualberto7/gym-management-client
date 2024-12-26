@@ -1,5 +1,6 @@
 import { ref, watch } from "vue";
 import api from "../api";
+import _ from "lodash";
 
 export default class Search {
   public url = "";
@@ -10,6 +11,8 @@ export default class Search {
   public placeholder = "Search...";
   public loading = false;
   public error = "";
+  public live = true;
+  private searchFunction = _.debounce(this.exec, 500);
 
   constructor(url: string, modelValue: string, filters = null, sorts = null) {
     this.url = url;
@@ -23,10 +26,13 @@ export default class Search {
   }
 
   handleSearch() {
-    console.log("Searching...", this.modelValue.value);
+    if (this.live) {
+      // Execute search with debounce to avoid multiple requests (500 ms)
+      this.searchFunction();
+    }
   }
 
-  async search(): Promise<any> {
+  async exec(): Promise<any> {
     this.loading = true;
     try {
       const { data } = await api.get(this.url);
