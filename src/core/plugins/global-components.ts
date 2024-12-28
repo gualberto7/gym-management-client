@@ -11,6 +11,7 @@ import Avatar from "../components/Avatar.vue";
 import Badge from "../components/Badge.vue";
 import PageHeader from "../components/PageHeader.vue";
 import CreateMember from "@/areas/member/components/CreateMember.vue";
+import SelectInput from "../components/SelectInput.vue";
 
 export function registerGlobalComponents(app: App) {
   app.component("Card", Card);
@@ -18,6 +19,7 @@ export function registerGlobalComponents(app: App) {
   app.component("FieldContainer", FieldContainer);
   app.component("Label", Label);
   app.component("TextField", TextField);
+  app.component("SelectInput", SelectInput);
   app.component("Button", Button);
   app.component("Alert", Alert);
   app.component("Table", Table);
