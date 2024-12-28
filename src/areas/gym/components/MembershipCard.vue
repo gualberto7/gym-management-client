@@ -12,7 +12,6 @@ defineProps({
 
 <template>
   <Card :title="membership.name">
-    <p>{{ membership.description }}</p>
     <p>Precio: {{ membership.price }} Bs.</p>
     <p>Tiempo: {{ membership.duration }} {{ membership.duration_unit }}</p>
   </Card>

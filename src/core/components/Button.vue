@@ -4,7 +4,13 @@ import { computed, type PropType } from "vue";
 const props = defineProps({
   color: {
     type: String as PropType<
-      "primary" | "secondary" | "info" | "danger" | "warning"
+      | "primary"
+      | "secondary"
+      | "info"
+      | "danger"
+      | "warning"
+      | "success"
+      | "default"
     >,
     default: "primary",
   },
@@ -47,7 +53,7 @@ const styles = computed(() => {
 .secondary {
   @apply bg-gray-700 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-700;
 }
-.info {
+.success {
   @apply bg-green-700 hover:bg-green-800 dark:bg-green-600 dark:hover:bg-green-700;
 }
 .danger {
@@ -55,6 +61,9 @@ const styles = computed(() => {
 }
 .warning {
   @apply bg-yellow-700 hover:bg-yellow-800 dark:bg-yellow-600 dark:hover:bg-yellow-700;
+}
+.default {
+  @apply text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700;
 }
 
 .disabled {
