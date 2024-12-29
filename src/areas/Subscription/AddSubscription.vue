@@ -41,9 +41,9 @@ const searchMember = (ci: string) => {
 };
 
 const handleResponse = (data: any) => {
-  console.log(data);
   if (data) {
     member.value = data;
+    form.model.member_id = data.id;
   }
 };
 </script>
@@ -63,7 +63,7 @@ const handleResponse = (data: any) => {
         </p>
       </div>
       <div class="grid grid-cols-2 gap-10">
-        <Form :form="form">
+        <Form :form="form" @on-submit="form.submit()">
           <div class="mt-4">
             <div class="mb-3">
               <FieldContainer field="membership_id">
@@ -86,18 +86,18 @@ const handleResponse = (data: any) => {
                 </FieldContainer>
               </div>
             </div>
-            <div v-if="member" class="mb-3">
+            <div class="mb-3">
               <h3 class="text-lg mb-2">
-                Nombre usuario: <strong>{{ member.name }}</strong>
+                Nombre usuario: <strong>{{ member?.name }}</strong>
               </h3>
               <h3 class="text-lg mb-2">
-                Celular: <strong>{{ member.phone }}</strong>
+                Celular: <strong>{{ member?.phone }}</strong>
               </h3>
             </div>
           </div>
           <div class="flex justify-center gap-2 mt-10">
             <Button color="default" type="reset">Limpiar</Button>
-            <Button>Guardar</Button>
+            <Button type="submit">Guardar</Button>
           </div>
         </Form>
         <div class="mt-4">

@@ -1,10 +1,15 @@
 import Form from "@/core/classes/form";
 import SubscriptionModel from "./SubscriptionModel";
 import type { SubscriptionForm as SubscriptionFormInterface } from "../interfaces/SubscriptionForm";
+import { useGymStore } from "@/areas/gym/store/gymStore";
 
 export default class SubscriptionForm extends Form<SubscriptionFormInterface> {
+  gymStore: any;
   constructor() {
     super(new SubscriptionModel());
+
+    this.gymStore = useGymStore();
+    this.model.gym_id = this.gymStore.currentGym.id;
 
     this.rules = {
       start_date: "required",
@@ -25,5 +30,6 @@ export default class SubscriptionForm extends Form<SubscriptionFormInterface> {
 
   async submit() {
     //const response = await this.exec();
+    await this.submitForm("/api/subscribed-members");
   }
 }
