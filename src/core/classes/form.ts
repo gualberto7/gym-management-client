@@ -2,6 +2,7 @@
 
 import { reactive, ref, watch, type Ref } from "vue";
 import api from "@/core/api";
+import { get, set } from "lodash";
 import ValidationRules from "@/core/utils/validationRules";
 import type { ValidationRuleName } from "@/core/interfaces/ValidationRules";
 
@@ -58,6 +59,14 @@ export default class Form<T extends Record<string, any>> {
     }
     if (Object.keys(this.errors).length === 0) this.isValid.value = true;
     else this.isValid.value = false;
+  }
+
+  public getValue(key: string): any {
+    return get(this.model, key);
+  }
+
+  public setValue(key: string, value: any): void {
+    set(this.model, key, value);
   }
 
   public async submitForm(url: string): Promise<any> {

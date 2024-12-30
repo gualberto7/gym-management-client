@@ -70,7 +70,7 @@ const handleResponse = (data: any) => {
                 <Label />
                 <SelectInput
                   :options="membershipOptions"
-                  label="Selecciona una membresia"
+                  noSelectionText="Selecciona una membresia"
                 />
               </FieldContainer>
             </div>
