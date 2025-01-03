@@ -46,6 +46,11 @@ const handleResponse = (data: any) => {
     form.model.member_id = data.id;
   }
 };
+
+const resetForm = () => {
+  form.reset();
+  member.value = null;
+};
 </script>
 
 <template>
@@ -96,8 +101,12 @@ const handleResponse = (data: any) => {
             </div>
           </div>
           <div class="flex justify-center gap-2 mt-10">
-            <Button color="default" type="reset">Limpiar</Button>
-            <Button type="submit">Guardar</Button>
+            <Button color="default" type="button" @click="resetForm"
+              >Limpiar</Button
+            >
+            <Button type="submit" :disabled="!form.isValid.value || !member"
+              >Guardar</Button
+            >
           </div>
         </Form>
         <div class="mt-4">

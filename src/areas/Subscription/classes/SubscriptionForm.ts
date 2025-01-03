@@ -32,4 +32,11 @@ export default class SubscriptionForm extends Form<SubscriptionFormInterface> {
     //const response = await this.exec();
     await this.submitForm("/api/subscribed-members");
   }
+
+  reset() {
+    this.model.start_date = "";
+    this.model.end_date = "";
+    this.model.member_id = 0;
+    this.model.membership_id = 0;
+  }
 }
