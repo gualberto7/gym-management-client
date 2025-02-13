@@ -2,6 +2,7 @@ import Form from "@/core/classes/form";
 import SubscriptionModel from "./SubscriptionModel";
 import type { SubscriptionForm as SubscriptionFormInterface } from "../interfaces/SubscriptionForm";
 import { useGymStore } from "@/areas/gym/store/gymStore";
+import { toast } from "vue3-toastify";
 
 export default class SubscriptionForm extends Form<SubscriptionFormInterface> {
   gymStore: any;
@@ -31,6 +32,7 @@ export default class SubscriptionForm extends Form<SubscriptionFormInterface> {
   async submit() {
     //const response = await this.exec();
     await this.submitForm("/api/subscribed-members");
+    toast.success("Subscripción creada exitosamente");
   }
 
   reset() {
