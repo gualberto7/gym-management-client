@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import { onMounted, reactive } from "vue";
-import type { Subscription } from "../interfaces/Subscription";
+import type {
+  Subscription,
+  PaginatedSubscription,
+} from "../interfaces/Subscription";
 import api from "@/core/api";
 import SubscriptionStatus from "./SubscriptionStatus.vue";
 
@@ -21,7 +24,9 @@ const columns = [
 ];
 
 onMounted(async () => {
-  const { data } = await api.get<Subscription[]>("api/subscribed-members");
+  const { data } = await api.get<PaginatedSubscription>(
+    "api/subscribed-members"
+  );
   subscriptions.push(...data.data);
 });
 </script>
