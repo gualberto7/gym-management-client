@@ -14,7 +14,17 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  clickable: {
+    type: Boolean,
+    default: false,
+  },
 });
+
+const emit = defineEmits(["click"]);
+
+const handleClick = (item: any) => {
+  emit("click", item);
+};
 </script>
 
 <template>
@@ -39,8 +49,10 @@ defineProps({
       <tbody>
         <tr
           class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          :class="{ 'cursor-pointer': clickable }"
           v-for="item in data"
           :key="item.id"
+          @click="clickable && handleClick(item)"
         >
           <td v-for="column in columns" class="px-6 py-4">
             <template v-if="withSlots">
