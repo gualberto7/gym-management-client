@@ -1,4 +1,6 @@
 import type { App } from "vue";
+
+// Global Common Components
 import Card from "@/core/components/Card.vue";
 import Form from "../components/Form.vue";
 import FieldContainer from "../components/FieldContainer.vue";
@@ -12,6 +14,9 @@ import Badge from "../components/Badge.vue";
 import PageHeader from "../components/PageHeader.vue";
 import CreateMember from "@/areas/member/components/CreateMember.vue";
 import SelectInput from "../components/SelectInput.vue";
+
+// Global Modal Components
+import SubscriptionInfoModal from "@/areas/subscription/components/SubscriptionInfoModal.vue";
 
 export function registerGlobalComponents(app: App) {
   app.component("Card", Card);
@@ -27,6 +32,7 @@ export function registerGlobalComponents(app: App) {
   app.component("Badge", Badge);
   app.component("PageHeader", PageHeader);
 
-  // Global components for modal
+  // Modals
   app.component("CreateMember", CreateMember);
+  app.component("SubscriptionInfoModal", SubscriptionInfoModal);
 }
