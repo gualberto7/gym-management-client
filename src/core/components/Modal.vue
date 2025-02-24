@@ -1,26 +1,37 @@
 <script lang="ts" setup>
-import { Modal } from "flowbite";
+import { Modal, type ModalOptions } from "flowbite";
 import { onMounted, ref } from "vue";
 import { useModalStore } from "../store/modal";
 
 const modalRef = ref<HTMLElement>();
 const { modal, hide } = useModalStore();
 
+const options: ModalOptions = {
+  backdrop: "static",
+  placement: "top-left",
+};
+
+const instanceOptions = {
+  id: "modal",
+  override: true,
+};
+
 onMounted(() => {
   if (modalRef.value) {
-    modal.modalInstance = new Modal(modalRef.value, { backdrop: "static" });
+    modal.modalInstance = new Modal(modalRef.value, options, instanceOptions);
   }
 });
 </script>
 
 <template>
   <div
-    id="static-modal"
+    id="modal"
     data-modal-backdrop="static"
+    data-modal-placement="top-left"
     tabindex="-1"
     aria-hidden="true"
     ref="modalRef"
-    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-20 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
   >
     <div class="relative p-4 w-full max-w-2xl max-h-full">
       <!-- Modal content -->
