@@ -6,7 +6,9 @@ import type {
 } from "../interfaces/Subscription";
 import api from "@/core/api";
 import SubscriptionStatus from "./SubscriptionStatus.vue";
+import { useModalStore } from "@/core/store/modal";
 
+const { show } = useModalStore();
 const subscriptions = reactive<Subscription[]>([]);
 const columns = [
   {
@@ -29,11 +31,21 @@ onMounted(async () => {
   );
   subscriptions.push(...data.data);
 });
+
+const handleClick = (item: Subscription) => {
+  show("SubscriptionInfoModal", "Subscription", item);
+};
 </script>
 
 <template>
   <div>
-    <Table :data="subscriptions" :columns="columns" withSlots>
+    <Table
+      :data="subscriptions"
+      :columns="columns"
+      withSlots
+      clickable
+      @click="handleClick"
+    >
       <template #member="{ item }">
         <div
           scope="row"
