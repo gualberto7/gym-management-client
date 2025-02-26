@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 // Imports ----
+import { useModalStore } from "@/core/store/modal";
 import { useGymStore } from "../gym/store/gymStore";
-import FindMember from "../member/classes/FindMember";
+import FindSubscription from "../subscription/classes/FindSubscription";
 
 // Components ----
 import SearchInput from "@/core/components/SearchInput.vue";
@@ -9,11 +10,14 @@ import SearchContainer from "@/core/components/SearchContainer.vue";
 
 // State ----
 const gymStore = useGymStore();
-const findMember = new FindMember();
+const modalStore = useModalStore();
+const findMember = new FindSubscription();
 
 // Methods ----
 const handleResponse = (data: any) => {
-  console.log(data);
+  if (data) {
+    modalStore.show("SubscriptionInfoModal", "Subscription", data);
+  }
 };
 </script>
 
