@@ -1,3 +1,5 @@
+import type { Ref } from "vue";
+
 export interface SearchInterface {
   url: string;
   modelValue: any;
@@ -5,7 +7,7 @@ export interface SearchInterface {
   sorts: any;
   results: any[];
   placeholder: string;
-  loading: boolean;
+  loading: Ref<boolean>;
   error: string;
   handleSearch(): void;
   exec(): Promise<any>;
