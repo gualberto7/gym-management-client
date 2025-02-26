@@ -9,7 +9,7 @@ export default class Search {
   public sorts = null;
   public results = [];
   public placeholder = "Search...";
-  public loading = false;
+  public loading = ref(false);
   public error = ref("");
   public live = true;
   private searchFunction = _.debounce(this.exec, 500);
@@ -40,7 +40,7 @@ export default class Search {
 
   async exec(): Promise<any> {
     this.error.value = "";
-    this.loading = true;
+    this.loading.value = true;
     try {
       const { data } = await api.get(this.getUrl());
       this.results = data;
@@ -48,7 +48,7 @@ export default class Search {
     } catch (error) {
       this.handleErrors(error);
     } finally {
-      this.loading = false;
+      this.loading.value = false;
     }
   }
 
