@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useSessionStore } from "@/areas/auth/store/sessionStore";
-import Avatar from "./Avatar.vue";
+import ActivityIcon from "./icons/ActivityIcon.vue";
 import AddUserIcon from "./icons/AddUserIcon.vue";
 import DoubleArrowLeft from "./icons/DoubleArrowLeft.vue";
 import GraphIcon from "./icons/GraphIcon.vue";
@@ -8,7 +7,6 @@ import HomeIcon from "./icons/HomeIcon.vue";
 import UsersIcon from "./icons/UsersIcon.vue";
 import { useGymStore } from "@/areas/gym/store/gymStore";
 
-const session = useSessionStore();
 const { currentGym } = useGymStore();
 </script>
 
@@ -21,8 +19,11 @@ const { currentGym } = useGymStore();
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
       <div class="flex items-center my-3">
         <div class="me-3">
-          <img src="/src/assets/gym-logo.png" alt="Gym logo" class="w-12 h-12
-          rounded-full"
+          <img
+            src="/src/assets/gym-logo.png"
+            alt="Gym logo"
+            class="w-12 h-12 rounded-full"
+          />
         </div>
         <div class="flex flex-col">
           <h2 class="front-semibold">{{ currentGym?.name }}</h2>
@@ -49,6 +50,15 @@ const { currentGym } = useGymStore();
           >
             <UsersIcon />
             <span class="flex-1 ms-3 whitespace-nowrap">Usuarios</span>
+          </RouterLink>
+        </li>
+        <li>
+          <RouterLink
+            :to="{ name: 'chenkis' }"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+          >
+            <ActivityIcon />
+            <span class="flex-1 ms-3 whitespace-nowrap">Actividad</span>
           </RouterLink>
         </li>
         <li>

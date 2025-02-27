@@ -41,6 +41,11 @@ const router = createRouter({
           component: () => import("@/areas/subscription/Subscription.vue"),
         },
         {
+          path: "actividad",
+          name: "chenkis",
+          component: () => import("@/areas/chenkis/index.vue"),
+        },
+        {
           path: "register",
           name: "register",
           component: () => import("@/areas/subscription/AddSubscription.vue"),
