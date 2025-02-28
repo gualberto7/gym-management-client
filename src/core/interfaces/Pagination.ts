@@ -4,14 +4,14 @@ export interface Pagination<T> {
   meta: meta;
 }
 
-type links = {
+export type links = {
   first: string;
   last: string;
   prev: string;
   next: string;
 };
 
-type meta = {
+export type meta = {
   current_page: number;
   from: number;
   last_page: number;
