@@ -36,31 +36,27 @@ const addChenkis = () => {
         <span class="justify-self-end font-semibold text-gray-600"
           >Usuario:</span
         >
-        <span class="font-semibold text-gray-700">{{
-          arg.data.member.name
-        }}</span>
+        <span class="font-semibold text-gray-700">{{ arg.member.name }}</span>
       </div>
       <div class="grid grid-cols-2 items-center gap-8">
         <span class="justify-self-end font-semibold text-gray-600"
           >Membresia:</span
         >
         <span class="font-semibold text-gray-700">{{
-          arg.data.membership.name
+          arg.membership.name
         }}</span>
       </div>
       <div class="grid grid-cols-2 items-center gap-8">
         <span class="justify-self-end font-semibold text-gray-600"
           >Fecha de Inicio:</span
         >
-        <span class="font-semibold text-gray-700">{{
-          arg.data.start_date
-        }}</span>
+        <span class="font-semibold text-gray-700">{{ arg.start_date }}</span>
       </div>
       <div class="grid grid-cols-2 items-center gap-8">
         <span class="justify-self-end font-semibold text-gray-600"
           >Fecha de Fin:</span
         >
-        <span class="font-semibold text-gray-700">{{ arg.data.end_date }}</span>
+        <span class="font-semibold text-gray-700">{{ arg.end_date }}</span>
       </div>
       <div class="grid grid-cols-2 items-center gap-8">
         <span class="justify-self-end font-semibold text-gray-600"

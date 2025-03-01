@@ -16,7 +16,7 @@ const findMember = new FindSubscription();
 // Methods ----
 const handleResponse = (data: any) => {
   if (data) {
-    modalStore.show("SubscriptionInfoModal", "Subscription", data);
+    modalStore.show("SubscriptionInfoModal", "Subscription", data.data);
   }
 };
 </script>

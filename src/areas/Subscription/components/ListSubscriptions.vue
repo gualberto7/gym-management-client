@@ -9,7 +9,20 @@ import SubscriptionStatus from "./SubscriptionStatus.vue";
 import { useModalStore } from "@/core/store/modal";
 
 const { show } = useModalStore();
-const subscriptions = reactive<Subscription[]>([]);
+const subscriptions = reactive<PaginatedSubscription>({
+  data: [],
+  links: { prev: "", next: "", first: "", last: "" },
+  meta: {
+    current_page: 0,
+    from: 0,
+    last_page: 0,
+    path: "",
+    per_page: 0,
+    to: 0,
+    total: 0,
+    links: [],
+  },
+});
 const columns = [
   {
     key: "member",
@@ -29,7 +42,7 @@ onMounted(async () => {
   const { data } = await api.get<PaginatedSubscription>(
     "api/subscribed-members"
   );
-  subscriptions.push(...data.data);
+  Object.assign(subscriptions, data);
 });
 
 const handleClick = (item: Subscription) => {
@@ -40,7 +53,7 @@ const handleClick = (item: Subscription) => {
 <template>
   <div>
     <Table
-      :data="subscriptions"
+      :data="subscriptions.data"
       :columns="columns"
       withSlots
       clickable
@@ -51,10 +64,10 @@ const handleClick = (item: Subscription) => {
           scope="row"
           class="flex items-center text-gray-900 whitespace-nowrap dark:text-white"
         >
-          <Avatar :name="item.member" />
+          <Avatar :name="item.member.name" />
           <div class="ps-3">
-            <div class="text-base font-semibold">{{ item.member }}</div>
-            <div class="font-normal text-gray-500">{{ item.phone }}</div>
+            <div class="text-base font-semibold">{{ item.member.name }}</div>
+            <div class="font-normal text-gray-500">{{ item.member.phone }}</div>
           </div>
         </div>
       </template>
@@ -62,7 +75,7 @@ const handleClick = (item: Subscription) => {
         <SubscriptionStatus :subscription="item" />
       </template>
       <template #membership="{ item }">
-        <span>{{ item.membership }}</span>
+        <span>{{ item.membership.name }}</span>
       </template>
     </Table>
   </div>
