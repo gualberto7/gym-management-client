@@ -1,4 +1,4 @@
-class ChenkisModel {
+class EntryModel {
   member_id: number;
   gym_id: number;
   registred_by: string;
@@ -10,4 +10,4 @@ class ChenkisModel {
   }
 }
 
-export default ChenkisModel;
+export default EntryModel;

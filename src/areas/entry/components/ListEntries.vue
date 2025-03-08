@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import api from "@/core/api";
 import { onMounted, reactive } from "vue";
-import type { PaginatedChenkis } from "../interfaces/chenki";
+import type { PaginatedEntries } from "../interfaces/Entry";
 import Pagination from "@/core/components/Pagination.vue";
 import { useGymStore } from "@/areas/gym/store/gymStore";
 
-const chenkis = reactive<PaginatedChenkis>({
+const entries = reactive<PaginatedEntries>({
   data: [],
   links: { prev: "", next: "", first: "", last: "" },
   meta: {
@@ -36,26 +36,26 @@ const columns = [
 const { currentGym } = useGymStore();
 
 onMounted(async () => {
-  await loadChenkis();
+  await loadEntries();
 });
 
-const loadChenkis = async (query: string = "") => {
-  const { data } = await api.get<PaginatedChenkis>(
+const loadEntries = async (query: string = "") => {
+  const { data } = await api.get<PaginatedEntries>(
     `api/gym/${currentGym?.id}/entries`
   );
-  Object.assign(chenkis, data);
+  Object.assign(entries, data);
 };
 
 const handlePagination = (url: string) => {
   const query = url.split("?")[1];
-  loadChenkis(query);
+  loadEntries(query);
 };
 </script>
 
 <template>
   <div>
-    <div v-if="chenkis.data.length">
-      <Table :data="chenkis.data" :columns="columns" withSlots>
+    <div v-if="entries.data.length">
+      <Table :data="entries.data" :columns="columns" withSlots>
         <template #name="{ item }">
           <div
             scope="row"
@@ -80,8 +80,8 @@ const handlePagination = (url: string) => {
         </template>
       </Table>
       <Pagination
-        :links="chenkis.links"
-        :meta="chenkis.meta"
+        :links="entries.links"
+        :meta="entries.meta"
         @paginate="handlePagination"
       />
     </div>

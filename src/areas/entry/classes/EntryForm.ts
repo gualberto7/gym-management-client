@@ -1,11 +1,11 @@
 import { toast } from "vue3-toastify";
 import Form from "@/core/classes/form";
-import ChenkisModel from "./ChenkisModel";
-import type { CreateChenkis } from "../interfaces/createChenkis";
+import EntryModel from "./EntryModel";
+import type { CreateEntry } from "../interfaces/CreateEntry";
 
-class ChenkisForm extends Form<CreateChenkis> {
+class EntryForm extends Form<CreateEntry> {
   constructor() {
-    super(new ChenkisModel());
+    super(new EntryModel());
 
     this.rules = {
       member_id: "required",
@@ -30,4 +30,4 @@ class ChenkisForm extends Form<CreateChenkis> {
   }
 }
 
-export default ChenkisForm;
+export default EntryForm;

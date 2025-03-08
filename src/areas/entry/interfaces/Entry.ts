@@ -1,6 +1,6 @@
 import type { Pagination } from "@/core/interfaces/Pagination";
 
-export interface Chenki {
+export interface Entry {
   data: {
     id: number;
     member_name: string;
@@ -10,4 +10,4 @@ export interface Chenki {
   };
 }
 
-export interface PaginatedChenkis extends Pagination<Chenki> {}
+export interface PaginatedEntries extends Pagination<Entry> {}

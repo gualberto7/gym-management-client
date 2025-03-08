@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import ListChenkis from "./components/listChenkis.vue";
+import ListEntries from "./components/ListEntries.vue";
 </script>
 
 <template>
   <div>
     <PageHeader title="Actividad Ingreso de Usuarios" />
     <div class="max-w-screen-xl mx-auto">
-      <ListChenkis />
+      <ListEntries />
     </div>
   </div>
 </template>

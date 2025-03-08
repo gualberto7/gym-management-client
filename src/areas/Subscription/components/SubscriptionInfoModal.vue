@@ -3,7 +3,7 @@
 import type { PropType } from "vue";
 import { useModalStore } from "@/core/store/modal";
 import { useGymStore } from "@/areas/gym/store/gymStore";
-import ChenkisForm from "@/areas/chenkis/classes/ChenkisForm";
+import EntryForm from "@/areas/entry/classes/EntryForm";
 import type { Subscription } from "../interfaces/Subscription";
 
 // Props ----
@@ -15,15 +15,15 @@ const props = defineProps({
 });
 
 // State ----
-const chenkisForm = new ChenkisForm();
+const form = new EntryForm();
 const { currentGym } = useGymStore();
 const { hide } = useModalStore();
 
 // Methods ----
-const addChenkis = () => {
-  chenkisForm.model.gym_id = currentGym?.id!;
-  chenkisForm.model.member_id = props.arg.member.id;
-  chenkisForm.submit();
+const addEntry = () => {
+  form.model.gym_id = currentGym?.id!;
+  form.model.member_id = props.arg.member.id;
+  form.submit();
   hide();
 };
 </script>
@@ -65,7 +65,7 @@ const addChenkis = () => {
       </div>
     </div>
     <div class="flex justify-center gap-4 mt-7">
-      <Button @click="addChenkis">Registrar Ingreso</Button>
+      <Button @click="addEntry">Registrar Ingreso</Button>
     </div>
   </div>
 </template>

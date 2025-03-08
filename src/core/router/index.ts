@@ -42,8 +42,8 @@ const router = createRouter({
         },
         {
           path: "actividad",
-          name: "chenkis",
-          component: () => import("@/areas/chenkis/index.vue"),
+          name: "entries",
+          component: () => import("@/areas/entry/Index.vue"),
         },
         {
           path: "register",
