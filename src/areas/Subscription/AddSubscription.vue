@@ -1,31 +1,28 @@
 <script lang="ts" setup>
 // Imports -----
-import { computed, reactive, ref } from "vue";
-import { useModalStore } from "@/core/store/modal";
-import { useGymStore } from "../gym/store/gymStore";
+import { computed, ref } from "vue";
+import { useAppStore } from "@/core/store";
+import FindMember from "../member/classes/FindMember";
+import type { Member } from "../member/interfaces/Member";
+import SubscriptionForm from "./classes/SubscriptionForm";
 
 // Components -----
-import MembershipCard from "../gym/components/MembershipCard.vue";
 import PageHeader from "@/core/components/PageHeader.vue";
-import SubscriptionForm from "./classes/SubscriptionForm";
 import SearchInput from "@/core/components/SearchInput.vue";
-import FindMember from "../member/classes/FindMember";
-import SearchContainer from "@/core/components/SearchContainer.vue";
 import FieldContainer from "@/core/components/FieldContainer.vue";
-import type { Member } from "../member/interfaces/Member";
+import SearchContainer from "@/core/components/SearchContainer.vue";
 
 // State -----
-const gymStore = useGymStore();
-const { show } = useModalStore();
+const { modal, gym } = useAppStore();
 const form = new SubscriptionForm();
 const findMember = new FindMember();
 const memberCi = ref("");
 const member = ref<Member | null>();
 
 // Computed -----
-const memberships = computed(() => gymStore.memberships || []);
+const memberships = computed(() => gym.memberships || []);
 const membershipOptions = computed(() =>
-  memberships.value.map((membership) => ({
+  memberships.value.map((membership: any) => ({
     label: membership.name,
     value: membership.id,
   }))
@@ -33,7 +30,7 @@ const membershipOptions = computed(() =>
 
 // Methods -----
 const createMember = () => {
-  show("CreateMember", "Crear nuevo usuario", {});
+  modal.show("CreateMember", "Crear nuevo usuario", {});
 };
 
 const searchMember = (ci: string) => {

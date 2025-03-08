@@ -11,7 +11,7 @@ import SearchContainer from "@/core/components/SearchContainer.vue";
 // State ----
 const gymStore = useGymStore();
 const modalStore = useModalStore();
-const findMember = new FindSubscription();
+const findMember = new FindSubscription(gymStore.currentGym?.id!);
 
 // Methods ----
 const handleResponse = (data: any) => {

@@ -6,9 +6,9 @@ import type {
 } from "../interfaces/Subscription";
 import api from "@/core/api";
 import SubscriptionStatus from "./SubscriptionStatus.vue";
-import { useModalStore } from "@/core/store/modal";
+import { useAppStore } from "@/core/store";
 
-const { show } = useModalStore();
+const { modal, gym } = useAppStore();
 const subscriptions = reactive<PaginatedSubscription>({
   data: [],
   links: { prev: "", next: "", first: "", last: "" },
@@ -40,13 +40,13 @@ const columns = [
 
 onMounted(async () => {
   const { data } = await api.get<PaginatedSubscription>(
-    "api/subscribed-members"
+    `api/gym/${gym.currentGym?.id}/subscriptions`
   );
   Object.assign(subscriptions, data);
 });
 
 const handleClick = (item: Subscription) => {
-  show("SubscriptionInfoModal", "Subscription", item);
+  modal.show("SubscriptionInfoModal", "Subscription", item);
 };
 </script>
 

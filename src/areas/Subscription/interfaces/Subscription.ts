@@ -1,20 +1,18 @@
 import type { Pagination } from "@/core/interfaces/Pagination";
 
 export interface Subscription {
-  data: {
+  id: number;
+  start_date: string;
+  end_date: string;
+  member: {
     id: number;
-    start_date: string;
-    end_date: string;
-    member: {
-      id: number;
-      name: string;
-      email: string;
-      phone: string;
-    };
-    membership: {
-      id: number;
-      name: string;
-    };
+    name: string;
+    email: string;
+    phone: string;
+  };
+  membership: {
+    id: number;
+    name: string;
   };
 }
 

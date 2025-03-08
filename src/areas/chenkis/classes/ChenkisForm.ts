@@ -10,18 +10,16 @@ class ChenkisForm extends Form<CreateChenkis> {
     this.rules = {
       member_id: "required",
       gym_id: "required",
-      registred_by: "required",
     };
 
     this.labels = {
       member_id: "Miembro",
       gym_id: "Gimnasio",
-      registred_by: "Registrado por",
     };
   }
 
   async submit() {
-    await this.submitForm("/api/chenkis");
+    await this.submitForm(`api/gym/${this.model.gym_id}/entries`);
     toast.success("Ingreso registrado exitosamente");
   }
 

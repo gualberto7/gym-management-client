@@ -22,8 +22,7 @@ const { hide } = useModalStore();
 // Methods ----
 const addChenkis = () => {
   chenkisForm.model.gym_id = currentGym?.id!;
-  chenkisForm.model.member_id = props.arg.data.member.id;
-  chenkisForm.model.registred_by = "Albert"; // TODO Change to the current user
+  chenkisForm.model.member_id = props.arg.member.id;
   chenkisForm.submit();
   hide();
 };

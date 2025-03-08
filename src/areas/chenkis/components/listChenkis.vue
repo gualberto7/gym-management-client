@@ -3,6 +3,7 @@ import api from "@/core/api";
 import { onMounted, reactive } from "vue";
 import type { PaginatedChenkis } from "../interfaces/chenki";
 import Pagination from "@/core/components/Pagination.vue";
+import { useGymStore } from "@/areas/gym/store/gymStore";
 
 const chenkis = reactive<PaginatedChenkis>({
   data: [],
@@ -32,13 +33,16 @@ const columns = [
     label: "Hora de ingreso",
   },
 ];
+const { currentGym } = useGymStore();
 
 onMounted(async () => {
   await loadChenkis();
 });
 
 const loadChenkis = async (query: string = "") => {
-  const { data } = await api.get<PaginatedChenkis>(`api/chenkis?${query}`);
+  const { data } = await api.get<PaginatedChenkis>(
+    `api/gym/${currentGym?.id}/entries`
+  );
   Object.assign(chenkis, data);
 };
 
