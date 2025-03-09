@@ -1,12 +1,48 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from "vue";
+import { defineProps } from "vue";
+import MemberForm from "../classes/MemberForm";
 
-onMounted(() => console.log("Component mounted"));
-onUnmounted(() => console.log("Component unmounted"));
+const props = defineProps({
+  arg: {
+    type: Object,
+    required: true,
+  },
+});
+
+const form = new MemberForm();
+form.model.ci = props.arg.ci;
 </script>
 
 <template>
-  <div>
-    <h1>Create member</h1>
+  <div class="p-6">
+    <Form :form="form" @on-submit="form.submit()">
+      <div class="mb-3">
+        <FieldContainer field="name">
+          <Label />
+          <TextField />
+        </FieldContainer>
+      </div>
+      <div class="mb-3">
+        <FieldContainer field="ci">
+          <Label />
+          <TextField />
+        </FieldContainer>
+      </div>
+      <div class="mb-3">
+        <FieldContainer field="phone">
+          <Label />
+          <TextField />
+        </FieldContainer>
+      </div>
+      <div class="mb-3">
+        <FieldContainer field="email">
+          <Label />
+          <TextField type="email" />
+        </FieldContainer>
+      </div>
+      <div>
+        <Button type="submit" :disabled="!form.isValid.value">Guardar</Button>
+      </div>
+    </Form>
   </div>
 </template>

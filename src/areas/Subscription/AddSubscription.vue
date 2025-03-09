@@ -16,7 +16,6 @@ import SearchContainer from "@/core/components/SearchContainer.vue";
 const { modal, gym } = useAppStore();
 const form = new SubscriptionForm();
 const findMember = new FindMember();
-const memberCi = ref("");
 const member = ref<Member | null>();
 
 // Computed -----
@@ -30,11 +29,9 @@ const membershipOptions = computed(() =>
 
 // Methods -----
 const createMember = () => {
-  modal.show("CreateMember", "Crear nuevo usuario", {});
-};
-
-const searchMember = (ci: string) => {
-  console.log(ci);
+  modal.show("CreateMember", "Crear nuevo usuario", {
+    ci: findMember.modelValue,
+  });
 };
 
 const handleResponse = (data: any) => {
@@ -54,19 +51,30 @@ const resetForm = () => {
   <div class="add-subscription-page">
     <PageHeader title="Registro" />
     <div class="w-full border p-6 px-10">
-      <div class="w-1/2 mx-auto mb-8">
-        <SearchContainer :search="findMember">
-          <SearchInput @on-response="handleResponse" />
-        </SearchContainer>
-      </div>
-      <div v-show="findMember.error.value">
-        <p class="text-red-500 text-sm mt-2">
-          {{ findMember.error.value }}
-        </p>
+      <div class="mb-8">
+        <div class="w-1/2">
+          <SearchContainer :search="findMember">
+            <SearchInput @on-response="handleResponse" />
+          </SearchContainer>
+        </div>
+        <div v-show="findMember.error.value">
+          <p class="text-red-500 text-sm mt-2">
+            {{ findMember.error.value }}
+          </p>
+          <Button @click="createMember" size="sm">Crea uno</Button>
+        </div>
       </div>
       <div class="grid grid-cols-2 gap-10">
         <Form :form="form" @on-submit="form.submit()">
           <div class="mt-4">
+            <div class="mb-3">
+              <h3 class="text-lg mb-2">
+                Nombre usuario: <strong>{{ member?.name }}</strong>
+              </h3>
+              <h3 class="text-lg mb-2">
+                Celular: <strong>{{ member?.phone }}</strong>
+              </h3>
+            </div>
             <div class="mb-3">
               <FieldContainer field="membership_id">
                 <Label />
@@ -88,14 +96,6 @@ const resetForm = () => {
                 </FieldContainer>
               </div>
             </div>
-            <div class="mb-3">
-              <h3 class="text-lg mb-2">
-                Nombre usuario: <strong>{{ member?.name }}</strong>
-              </h3>
-              <h3 class="text-lg mb-2">
-                Celular: <strong>{{ member?.phone }}</strong>
-              </h3>
-            </div>
           </div>
           <div class="flex justify-center gap-2 mt-10">
             <Button color="default" type="button" @click="resetForm"
@@ -106,7 +106,8 @@ const resetForm = () => {
             >
           </div>
         </Form>
-        <div class="mt-4">
+
+        <div class="mt-4 border-l-2 pl-4">
           <h3 class="text-lg mb-2">Membresias</h3>
           <div class="ms-4">
             <ul class="list-disc list-inside">
