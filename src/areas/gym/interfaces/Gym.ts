@@ -1,3 +1,5 @@
+import type { Membership } from "./Membership";
+
 export interface Gym {
   id: number;
   name: string;

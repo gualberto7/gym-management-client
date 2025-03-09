@@ -5,7 +5,7 @@ export interface Subscription {
   start_date: string;
   end_date: string;
   member: {
-    id: number;
+    id: string;
     name: string;
     email: string;
     phone: string;

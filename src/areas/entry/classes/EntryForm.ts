@@ -24,7 +24,7 @@ class EntryForm extends Form<CreateEntry> {
   }
 
   reset() {
-    this.model.member_id = 0;
+    this.model.member_id = "";
     this.model.gym_id = 0;
     this.model.registred_by = "";
   }

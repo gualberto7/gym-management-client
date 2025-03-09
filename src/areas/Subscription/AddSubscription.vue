@@ -44,7 +44,7 @@ const createMember = () => {
   });
 };
 
-const handleResponse = (newMember: Member) => {
+const handleResponse = (newMember: any) => {
   if (newMember) {
     member.value = newMember;
     form.model.member_id = newMember.id;

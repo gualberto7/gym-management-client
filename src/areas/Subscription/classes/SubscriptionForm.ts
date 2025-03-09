@@ -10,35 +10,32 @@ export default class SubscriptionForm extends Form<SubscriptionFormInterface> {
     super(new SubscriptionModel());
 
     this.gymStore = useGymStore();
-    this.model.gym_id = this.gymStore.currentGym.id;
 
     this.rules = {
       start_date: "required",
       end_date: "required",
-      member_id: "required",
       membership_id: "required",
-      gym_id: "required",
     };
 
     this.labels = {
       start_date: "Fecha de inicio",
       end_date: "Fecha de fin",
-      member_id: "Miembro",
       membership_id: "Membresía",
-      gym_id: "Gimnasio",
     };
   }
 
   async submit() {
-    //const response = await this.exec();
-    await this.submitForm("/api/subscribed-members");
+    await this.submitForm(
+      `/api/gym/${this.gymStore.currentGym.id}/subscriptions`
+    );
     toast.success("Subscripción creada exitosamente");
+    this.reset();
   }
 
   reset() {
     this.model.start_date = "";
     this.model.end_date = "";
-    this.model.member_id = 0;
+    this.model.member_id = "";
     this.model.membership_id = 0;
   }
 }

@@ -1,4 +1,5 @@
 export interface Membership {
+  id: string;
   name: string;
   price: number;
   duration: number;
