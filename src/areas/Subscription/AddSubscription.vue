@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 // Imports -----
-import { computed, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useAppStore } from "@/core/store";
+import { events } from "@/core/store/eventBus";
 import FindMember from "../member/classes/FindMember";
 import type { Member } from "../member/interfaces/Member";
 import SubscriptionForm from "./classes/SubscriptionForm";
@@ -13,10 +14,19 @@ import FieldContainer from "@/core/components/FieldContainer.vue";
 import SearchContainer from "@/core/components/SearchContainer.vue";
 
 // State -----
-const { modal, gym } = useAppStore();
+const { modal, gym, event } = useAppStore();
 const form = new SubscriptionForm();
 const findMember = new FindMember();
 const member = ref<Member | null>();
+
+// Hooks -----
+onMounted(() => {
+  event.on(events.MEMBER_CREATED, handleResponse);
+});
+
+onUnmounted(() => {
+  event.off(events.MEMBER_CREATED, handleResponse);
+});
 
 // Computed -----
 const memberships = computed(() => gym.memberships || []);
@@ -34,10 +44,11 @@ const createMember = () => {
   });
 };
 
-const handleResponse = (data: any) => {
-  if (data) {
-    member.value = data;
-    form.model.member_id = data.id;
+const handleResponse = (newMember: Member) => {
+  if (newMember) {
+    member.value = newMember;
+    form.model.member_id = newMember.id;
+    findMember.reset();
   }
 };
 

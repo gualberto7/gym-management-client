@@ -1,11 +1,16 @@
+import { toast } from "vue3-toastify";
 import Form from "@/core/classes/form";
 import MemberModel from "./MemberModel";
+import { useAppStore } from "@/core/store";
+import { events } from "@/core/store/eventBus";
 import type { CreateMember } from "../interfaces/Member";
-import { toast } from "vue3-toastify";
 
 class MemberForm extends Form<CreateMember> {
+  private appStore: any;
   constructor() {
     super(new MemberModel());
+
+    this.appStore = useAppStore();
 
     this.rules = {
       name: "required|string",
@@ -23,8 +28,10 @@ class MemberForm extends Form<CreateMember> {
   }
 
   async submit() {
-    await this.submitForm("/api/members");
+    const { data } = await this.submitForm("/api/members");
     toast.success("Usuario creado exitosamente");
+    this.appStore.event.emit(events.MEMBER_CREATED, data);
+    this.appStore.modal.hide();
   }
 }
 

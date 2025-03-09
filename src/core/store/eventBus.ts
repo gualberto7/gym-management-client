@@ -22,3 +22,7 @@ const eventBus = reactive({
 });
 
 export default eventBus;
+
+export const events = {
+  MEMBER_CREATED: "member-created",
+};

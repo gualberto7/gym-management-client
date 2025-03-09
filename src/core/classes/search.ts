@@ -70,4 +70,10 @@ export default class Search {
       this.error.value = "Algo salió mal. Por favor, intente nuevamente.";
     }
   }
+
+  reset() {
+    this.results = [];
+    this.modelValue.value = "";
+    this.error.value = "";
+  }
 }
