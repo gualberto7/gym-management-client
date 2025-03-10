@@ -6,7 +6,6 @@ export default class FindSubscription extends Search {
 
     this.placeholder = "Buscar usuario por CI...";
     this.addModelAsParam = true;
-    this.live = false;
   }
 
   async submit() {

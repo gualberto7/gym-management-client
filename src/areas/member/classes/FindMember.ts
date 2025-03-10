@@ -6,7 +6,6 @@ export default class FindMember extends Search {
 
     this.placeholder = "Buscar por CI...";
     this.addModelAsParam = true;
-    this.live = false;
   }
 
   async submit() {

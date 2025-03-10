@@ -11,7 +11,7 @@ export default class Search {
   public placeholder = "Search...";
   public loading = ref(false);
   public error = ref("");
-  public live = true;
+  public live = false;
   private searchFunction = _.debounce(this.exec, 500);
   public addModelAsParam = false;
 
