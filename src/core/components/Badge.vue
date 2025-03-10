@@ -17,7 +17,7 @@ defineProps({
 
 <template>
   <div
-    class="w-auto text-xs font-medium me-2 px-2.5 py-0.5 rounded"
+    class="w-fit text-xs font-medium me-2 px-2.5 py-0.5 rounded"
     :class="color"
   >
     <template v-if="withSlot">

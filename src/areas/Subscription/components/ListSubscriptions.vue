@@ -7,8 +7,10 @@ import type {
 import api from "@/core/api";
 import SubscriptionStatus from "./SubscriptionStatus.vue";
 import { useAppStore } from "@/core/store";
+import { useDate } from "@/core/composables/useDate";
 
 const { modal, gym } = useAppStore();
+const { formatDate } = useDate();
 const subscriptions = reactive<PaginatedSubscription>({
   data: [],
   links: { prev: "", next: "", first: "", last: "" },
@@ -29,12 +31,12 @@ const columns = [
     label: "Name",
   },
   {
-    key: "status",
-    label: "Estado",
+    key: "dates",
+    label: "Fecha Inicio - Fin",
   },
   {
-    key: "membership",
-    label: "Membresia",
+    key: "status",
+    label: "Estado",
   },
 ];
 
@@ -71,11 +73,16 @@ const handleClick = (item: Subscription) => {
           </div>
         </div>
       </template>
+      <template #dates="{ item }">
+        <div>
+          <div class="font-semibold">
+            {{ formatDate(item.start_date) }} - {{ formatDate(item.end_date) }}
+          </div>
+          <p>Plan {{ item.membership.name }}</p>
+        </div>
+      </template>
       <template #status="{ item }">
         <SubscriptionStatus :subscription="item" />
-      </template>
-      <template #membership="{ item }">
-        <span>{{ item.membership.name }}</span>
       </template>
     </Table>
   </div>
