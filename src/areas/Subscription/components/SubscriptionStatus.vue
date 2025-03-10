@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { get } from "lodash";
-import type { Subscription } from "../interfaces/Subscription";
 import { computed } from "vue";
+import type { Subscription } from "../interfaces/Subscription";
 
 const props = defineProps({
   subscription: {
@@ -25,12 +24,9 @@ const badgeData = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div class="">
     <Badge :color="badgeData.color" withSlot>
-      {{ subscription.end_date }}
-    </Badge>
-    <span class="text-xs text-gray-500 dark:text-gray-400">
       {{ badgeData.text }}
-    </span>
+    </Badge>
   </div>
 </template>
