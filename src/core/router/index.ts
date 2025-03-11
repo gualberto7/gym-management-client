@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Index from "@/pages/Index.vue";
-import { useSessionStore } from "@/areas/auth/store/sessionStore";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -49,11 +48,6 @@ const router = createRouter({
           path: "register",
           name: "register",
           component: () => import("@/areas/subscription/AddSubscription.vue"),
-        },
-        {
-          path: "memberships",
-          name: "memberships",
-          component: () => import("@/pages/Membership.vue"),
         },
       ],
     },
