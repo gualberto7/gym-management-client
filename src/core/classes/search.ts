@@ -7,7 +7,7 @@ export default class Search {
   public modelValue: any;
   public filters: Array<string> = [];
   public sorts = null;
-  public results = [];
+  public results = ref();
   public placeholder = "Search...";
   public loading = ref(false);
   public error = ref("");
@@ -43,7 +43,7 @@ export default class Search {
     this.loading.value = true;
     try {
       const { data } = await api.get(this.getUrl());
-      this.results = data;
+      this.results.value = data;
       return data;
     } catch (error) {
       this.handleErrors(error);
@@ -72,7 +72,7 @@ export default class Search {
   }
 
   reset() {
-    this.results = [];
+    this.results.value = [];
     this.modelValue.value = "";
     this.error.value = "";
   }
