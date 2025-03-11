@@ -3,7 +3,7 @@ import Index from "@/pages/Index.vue";
 import { useSessionStore } from "@/areas/auth/store/sessionStore";
 
 const router = createRouter({
-  history: createWebHistory("http://localhost:5173"),
+  history: createWebHistory(),
   routes: [
     {
       path: "/",
@@ -58,19 +58,6 @@ const router = createRouter({
       ],
     },
   ],
-});
-
-router.beforeEach((to, from, next) => {
-  const session = useSessionStore();
-  if (
-    to.name !== "login" &&
-    to.name !== "create-account" &&
-    !session.isAuthenticated
-  ) {
-    next({ name: "login" });
-  } else {
-    next();
-  }
 });
 
 export default router;
