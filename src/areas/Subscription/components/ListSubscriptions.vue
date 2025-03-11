@@ -1,30 +1,19 @@
 <script lang="ts" setup>
-import { onMounted, reactive } from "vue";
-import type {
-  Subscription,
-  PaginatedSubscription,
-} from "../interfaces/Subscription";
-import api from "@/core/api";
-import SubscriptionStatus from "./SubscriptionStatus.vue";
+// Imports ----
+import { computed, onMounted } from "vue";
 import { useAppStore } from "@/core/store";
 import { useDate } from "@/core/composables/useDate";
+import type { Subscription } from "../interfaces/Subscription";
 
+// Components ----
+import SubscriptionStatus from "./SubscriptionStatus.vue";
+import SearchInput from "@/core/components/SearchInput.vue";
+import SearchSubscription from "../classes/SearchSubscription";
+import SearchContainer from "@/core/components/SearchContainer.vue";
+
+// State ----
 const { modal, gym } = useAppStore();
 const { formatDate } = useDate();
-const subscriptions = reactive<PaginatedSubscription>({
-  data: [],
-  links: { prev: "", next: "", first: "", last: "" },
-  meta: {
-    current_page: 0,
-    from: 0,
-    last_page: 0,
-    path: "",
-    per_page: 0,
-    to: 0,
-    total: 0,
-    links: [],
-  },
-});
 const columns = [
   {
     key: "member",
@@ -39,23 +28,31 @@ const columns = [
     label: "Estado",
   },
 ];
+const search = new SearchSubscription(gym.currentGym?.id!);
 
+// Hooks ----
 onMounted(async () => {
-  const { data } = await api.get<PaginatedSubscription>(
-    `api/gym/${gym.currentGym?.id}/subscriptions`
-  );
-  Object.assign(subscriptions, data);
+  await search.exec();
 });
 
+// Methods ----
 const handleClick = (item: Subscription) => {
   modal.show("SubscriptionInfoModal", "Subscription", item);
 };
+
+// Computed ----
+const subscriptions = computed(() => search.results.value?.data || []);
 </script>
 
 <template>
   <div>
+    <div class="w-96 mb-4">
+      <SearchContainer :search="search">
+        <SearchInput />
+      </SearchContainer>
+    </div>
     <Table
-      :data="subscriptions.data"
+      :data="subscriptions"
       :columns="columns"
       withSlots
       clickable
