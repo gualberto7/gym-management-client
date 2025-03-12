@@ -4,7 +4,15 @@ import type { Gym } from "../interfaces/Gym";
 
 export const useGymStore = defineStore("gym", () => {
   const gyms = reactive<Gym[]>([]);
-  const currentGym = ref<Gym>();
+  const currentGym = ref<Gym>({
+    id: "",
+    name: "",
+    address: "",
+    phone: "",
+    email: "",
+    website: "",
+    user_id: "",
+  });
 
   const setGyms = (_gyms: Gym[]) => {
     Object.assign(gyms, _gyms);
