@@ -17,7 +17,7 @@ onMounted(() => {
 
 <template>
   <div class="w-1/2 border p-6 px-10">
-    <Form :form="form">
+    <Form :form="form" @on-submit="form.submit()">
       <div class="mb-3">
         <FieldContainer field="name">
           <Label />
@@ -25,7 +25,7 @@ onMounted(() => {
         </FieldContainer>
       </div>
       <div class="mb-3">
-        <FieldContainer field="adress">
+        <FieldContainer field="address">
           <Label />
           <TextField />
         </FieldContainer>
@@ -48,7 +48,9 @@ onMounted(() => {
           <TextField />
         </FieldContainer>
       </div>
-      <Button>{{ form.model.id ? "Actualizar" : "Crear" }}</Button>
+      <Button type="submit">{{
+        form.model.id ? "Actualizar" : "Crear"
+      }}</Button>
     </Form>
   </div>
 </template>

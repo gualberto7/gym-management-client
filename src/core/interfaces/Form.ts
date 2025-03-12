@@ -10,3 +10,5 @@ export interface Form {
   setValue(key: string, value: any): void;
   getValue(key: string): any;
 }
+
+export type FormMethods = "post" | "put";

@@ -1,8 +1,9 @@
 import { defineStore } from "pinia";
 import { computed, reactive, ref } from "vue";
 import type { Gym } from "../interfaces/Gym";
+import type { GymStore } from "../interfaces/GymStore";
 
-export const useGymStore = defineStore("gym", () => {
+export const useGymStore = defineStore("gym", (): GymStore => {
   const gyms = reactive<Gym[]>([]);
   const currentGym = ref<Gym>({
     id: "",
@@ -28,6 +29,7 @@ export const useGymStore = defineStore("gym", () => {
   return {
     gyms,
     setGyms,
+    setCurrentGym,
     currentGym,
 
     // Computed

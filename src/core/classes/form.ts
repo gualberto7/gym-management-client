@@ -5,6 +5,7 @@ import api from "@/core/api";
 import { get, set } from "lodash";
 import ValidationRules from "@/core/utils/validationRules";
 import type { ValidationRuleName } from "@/core/interfaces/ValidationRules";
+import type { FormMethods } from "../interfaces/Form";
 
 export default class Form<T extends Record<string, any>> {
   public model: T;
@@ -73,10 +74,13 @@ export default class Form<T extends Record<string, any>> {
     set(this.model, key, value);
   }
 
-  public async submitForm(url: string): Promise<any> {
+  public async submitForm(
+    url: string,
+    method: FormMethods = "post"
+  ): Promise<any> {
     this.processing.value = true;
     try {
-      const response = await api.post(url, this.model);
+      const response = await api[method](url, this.model);
       return response;
     } catch (error: any) {
       if (error.response) {

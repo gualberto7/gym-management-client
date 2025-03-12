@@ -7,7 +7,7 @@ import HomeIcon from "./icons/HomeIcon.vue";
 import UsersIcon from "./icons/UsersIcon.vue";
 import { useGymStore } from "@/areas/gym/store/gymStore";
 
-const { currentGym } = useGymStore();
+const gymStore = useGymStore();
 </script>
 
 <template>
@@ -29,9 +29,9 @@ const { currentGym } = useGymStore();
             />
           </div>
           <div class="flex flex-col">
-            <h2 class="front-semibold">{{ currentGym?.name }}</h2>
+            <h2 class="front-semibold">{{ gymStore.currentGym.name }}</h2>
             <p class="text-sm text-gray-500 dark:text-gray-400">
-              {{ currentGym?.phone }}
+              {{ gymStore.currentGym.phone }}
             </p>
           </div>
         </div>
