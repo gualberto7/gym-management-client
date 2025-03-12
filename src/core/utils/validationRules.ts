@@ -6,8 +6,7 @@
 import { type ValidationResult } from "../interfaces/ValidationRules";
 
 const required = (value: any): ValidationResult => {
-  value = value.toString();
-  if (value && value.trim() !== "")
+  if (value && value.toString().trim() !== "")
     return { isValid: true, errorMessage: null };
 
   return { isValid: false, errorMessage: "This field is required" };

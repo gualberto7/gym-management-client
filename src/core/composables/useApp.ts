@@ -8,11 +8,10 @@ export const useApp = () => {
 
   const getAuthenticatedUser = async () => {
     try {
-      const { data } = await api.get("api/user");
-      const response = await api.get("api/gyms");
-      user.setUser(data);
-      gym.setGyms(response.data);
-      console.log(data, response.data);
+      const response = await api.get("api/user");
+      const { data } = await api.get("api/gyms");
+      user.setUser(response.data);
+      gym.setGyms(data);
       return true;
     } catch (error) {
       router.push({ name: "login" });

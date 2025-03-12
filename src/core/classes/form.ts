@@ -1,10 +1,11 @@
 // Form.ts
 
-import { reactive, ref, watch, type Ref } from "vue";
+import { reactive, ref, watch } from "vue";
 import api from "@/core/api";
 import { get, set } from "lodash";
 import ValidationRules from "@/core/utils/validationRules";
 import type { ValidationRuleName } from "@/core/interfaces/ValidationRules";
+import type { FormMethods } from "../interfaces/Form";
 
 export default class Form<T extends Record<string, any>> {
   public model: T;
@@ -14,6 +15,7 @@ export default class Form<T extends Record<string, any>> {
   public labels: Record<string, string> = reactive({});
   public error = ref("");
   public isValid = ref(false);
+  private validating = ref(false);
 
   constructor(model: T) {
     this.model = reactive(model) as T;
@@ -36,6 +38,8 @@ export default class Form<T extends Record<string, any>> {
   }
 
   public validate() {
+    if (this.validating.value) return;
+    this.validating.value = true;
     const keys = Object.keys(this.rules);
     for (const key of keys) {
       const rules = this.rules[key].split("|");
@@ -57,6 +61,7 @@ export default class Form<T extends Record<string, any>> {
         delete this.errors[key];
       }
     }
+    this.validating.value = false;
     if (Object.keys(this.errors).length === 0) this.isValid.value = true;
     else this.isValid.value = false;
   }
@@ -69,10 +74,13 @@ export default class Form<T extends Record<string, any>> {
     set(this.model, key, value);
   }
 
-  public async submitForm(url: string): Promise<any> {
+  public async submitForm(
+    url: string,
+    method: FormMethods = "post"
+  ): Promise<any> {
     this.processing.value = true;
     try {
-      const response = await api.post(url, this.model);
+      const response = await api[method](url, this.model);
       return response;
     } catch (error: any) {
       if (error.response) {

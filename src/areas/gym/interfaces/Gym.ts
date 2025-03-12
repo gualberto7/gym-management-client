@@ -1,12 +1,21 @@
 import type { Membership } from "./Membership";
 
 export interface Gym {
-  id: number;
+  id: string;
   name: string;
-  adress: string;
+  address: string;
   phone: string;
   email?: string;
   website?: string;
-  user_id: number;
+  user_id: string;
   memberships?: Membership[];
+}
+
+export interface GymForm {
+  id?: string;
+  name: string;
+  address: string;
+  phone: string;
+  email?: string;
+  website?: string;
 }
