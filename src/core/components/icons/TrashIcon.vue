@@ -1,6 +1,6 @@
 <template>
   <svg
-    class="w-6 h-6 text-red-700 hover:text-red-800 dark:text-red-600 dark:hover:text-red-700 cursor-pointer"
+    class="w-6 h-6"
     aria-hidden="true"
     xmlns="http://www.w3.org/2000/svg"
     width="24"

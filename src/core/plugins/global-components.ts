@@ -17,6 +17,7 @@ import SelectInput from "../components/SelectInput.vue";
 
 // Global Modal Components
 import SubscriptionInfoModal from "@/areas/subscription/components/SubscriptionInfoModal.vue";
+import ShowMembershipModal from "@/areas/membership/components/ShowMembershipModal.vue";
 
 export function registerGlobalComponents(app: App) {
   app.component("Card", Card);
@@ -35,4 +36,5 @@ export function registerGlobalComponents(app: App) {
   // Modals
   app.component("CreateMember", CreateMember);
   app.component("SubscriptionInfoModal", SubscriptionInfoModal);
+  app.component("ShowMembershipModal", ShowMembershipModal);
 }
