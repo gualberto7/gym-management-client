@@ -48,8 +48,10 @@ const handleClick = (item: any) => {
       </thead>
       <tbody>
         <tr
-          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-          :class="{ 'cursor-pointer': clickable }"
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+          :class="{
+            'hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer': clickable,
+          }"
           v-for="item in data"
           :key="item.id"
           @click="clickable && handleClick(item)"
