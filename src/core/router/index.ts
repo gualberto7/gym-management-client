@@ -54,6 +54,11 @@ const router = createRouter({
           name: "gym",
           component: () => import("@/areas/gym/Index.vue"),
         },
+        {
+          path: "membresias",
+          name: "membership",
+          component: () => import("@/areas/membership/Index.vue"),
+        },
       ],
     },
   ],
