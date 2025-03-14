@@ -39,10 +39,13 @@ onMounted(async () => {
 });
 
 // Methods -----
-const handleActionClick = (action: string, membership: MembershipInterface) => {
+const handleActionClick = (action: string, membership: any = {}) => {
   switch (action) {
     case "show":
       modal.show("ShowMembershipModal", "Detalle de Membresia", membership);
+      break;
+    case "create":
+      modal.show("MembershipFormModal", "Crear Membresia", {});
       break;
     case "edit":
       modal.show("EditMembershipModal", "Edit Membership", membership);
@@ -55,7 +58,10 @@ const handleActionClick = (action: string, membership: MembershipInterface) => {
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col gap-4">
+    <div class="w-full flex justify-end">
+      <Button @click="handleActionClick('create')">Crear Membresia</Button>
+    </div>
     <Table :data="memberships" :columns="columns" withSlots>
       <template #name="{ item }">
         <p>{{ item.name }}</p>
